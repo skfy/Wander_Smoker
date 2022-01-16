@@ -31,9 +31,7 @@
 <...>
 
 ## チャレンジ要素一覧
-<https://www.webcreatorbox.com/tech/css-flexbox-cheat-sheet
- https://twitter.com/home?lang=ja
- http://itref.fc2web.com/javascript/jquery/raty.html>
+<https://docs.google.com/spreadsheets/d/1Z7gp9SDj_MWjFomukM7swIbVKk9BqUfbgVwAEy_OQeg/edit#gid=0>
 
 ## 開発環境
 - OS：Linux(CentOS)
