@@ -1,0 +1,9 @@
+<p>いいねした投稿一覧</p>
+<%#= render partial: "posts/post", collection: @like_posts %>
+<% @like_posts.each do |like_post| %>
+  <p><%= attachment_image_tag like_post, :image %></p>
+  <p><%= like_post.title %></p>
+  <p><%= like_post.comment %></p>
+  <p><%= like_post.user.user_name %></p>
+  <p><%= like_post.created_at.strftime('%Y/%m/%d') %></p>
+<% end %>

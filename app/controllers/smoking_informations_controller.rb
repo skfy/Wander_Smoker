@@ -1,0 +1,2 @@
+class SmokingInformationsController < ApplicationController
+end

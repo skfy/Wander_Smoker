@@ -1,0 +1,40 @@
+編集画面
+<%= form_with model: @user, local: true do |f| %>
+<div class="container">
+ <div class="row">
+  <div class="col-md-10 col-md-offset-1">
+   <table class="table">
+    <tr>
+     <th><%= f.label :name, '名前' %></th>
+     <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :name_kana, 'カナ' %></th>
+     <td><%= f.text_field :name_kana %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :user_name, 'ユーザーネーム' %></th>
+     <td><%= f.text_field :user_name %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :email,'メールアドレス' %></th>
+     <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :password, 'パスワード' %></th>
+     <td><%= f.text_field :password %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :age, '年齢' %></th>
+     <td><%= f.text_field :age %></td>
+    </tr>
+    <tr>
+     <th></th>
+     <td><%= f.submit '編集内容を保存' %></td>
+     <td><%= link_to "退会する", users_unsubscribe_path %></td>
+    <tr>
+   </table>
+  </div>
+ </div>
+</div>
+<% end %>

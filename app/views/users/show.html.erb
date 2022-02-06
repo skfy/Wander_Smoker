@@ -1,0 +1,43 @@
+<div class="container">
+ <div class="row">
+ <div class="col-5 ml-3">
+
+  <table border="1" width="300">
+   <tr>
+    <th>名前</th>
+    <td><%= @user.name %></td>
+   </tr>
+
+   <tr>
+    <th>カナ</th>
+    <td><%= @user.name_kana %></td>
+   </tr>
+
+   <tr>
+    <th>ユーザーネーム</th>
+    <td><%= @user.user_name %></td>
+   </tr>
+
+   <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+   </tr>
+
+   <tr>
+    <th>パスワード</th>
+    <td><%= @user.password %></td>
+   </tr>
+
+   <tr>
+    <th>年齢</th>
+    <td><%= @user.age %></td>
+   </tr>
+  </tbody>
+
+  <%= link_to "いいねした投稿", likes_user_path(@user) %>
+
+  <%= link_to "編集する", edit_user_path(@user) %>
+
+ </div>
+ </div>
+</div>

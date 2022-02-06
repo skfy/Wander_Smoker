@@ -1,0 +1,32 @@
+投稿編集画面
+
+<%= form_with model: @post, local:true do |f| %>
+
+ <div class="field">
+  <%= f.label :画像 %>
+  <%= f.attachment_field :image %>
+  <%= attachment_image_tag @post, :image %>
+ </div>
+
+ <div class="field">
+  <%= f.label :タイトル %>
+  <%= f.text_field :title %>
+ </div>
+
+ <div class="field">
+  <%= f.label :コメント %>
+  <%= f.text_area :comment %>
+ </div>
+
+ <div class="field">
+  <p>ユーザーネーム：<%= @post.user.user_name %></p>
+  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+ </div>
+
+ <%= f.submit '再投稿' %>
+
+ <%# if @post.user == current_user %>
+  <%= link_to "削除", post_path, method: :delete %>
+ <%# end %>
+
+<% end %>

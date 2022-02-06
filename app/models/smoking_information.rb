@@ -1,0 +1,2 @@
+class SmokingInformation < ApplicationRecord
+end

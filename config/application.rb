@@ -17,3 +17,4 @@ module WanderSmoker
     # the framework and any gems in your application.
   end
 end
+Refile.secret_key = 'ddf76bfd55fddc3638d4e76d9a3cbbcc0e5dc61322277aaccfeb88af7ab927ab7819f0b5aaff0309530b7b5897f90ab2004a6e4eaff65f4837f9d43b65602ea9'
