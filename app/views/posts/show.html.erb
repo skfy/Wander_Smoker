@@ -1,11 +1,12 @@
 投稿詳細画面
 
 <div>
+  <p>投稿No.<%= @post.id %></p>
   <%= attachment_image_tag @post, :image %>
   <p>タイトル：<%= @post.title %></p>
   <p>コメント：<%= @post.comment %></p>
   <p>ユーザーネーム：<%= @post.user.user_name %></p>
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
   <%= link_to "編集する", edit_post_path(@post) %>
 </div>
 
@@ -14,7 +15,7 @@
 <% @post.comments.each do |comment| %>
   <p><%#= image_tag('sample-author1.jpg') %></p>
   <%= comment.user.user_name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_text %>
+  <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %><%= comment.comment_text %>
   <% if comment.user == current_user %>
   <div>
     <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
@@ -40,4 +41,7 @@
         ♡<%= @post.likes.count %> いいね
       <% end %>
     </p>
-  <% end %>
+<% end %>
+
+<%= link_to "新着・投稿一覧画面へ", posts_path %>
+<%#= link_to "お気に入り投稿一覧画面へ", likes_user_path(likes_user.id) %>

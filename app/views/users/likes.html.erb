@@ -1,9 +1,19 @@
-<p>いいねした投稿一覧</p>
+<p>お気に入り投稿一覧</p>
 <%#= render partial: "posts/post", collection: @like_posts %>
 <% @like_posts.each do |like_post| %>
-  <p><%= attachment_image_tag like_post, :image %></p>
-  <p><%= like_post.title %></p>
-  <p><%= like_post.comment %></p>
-  <p><%= like_post.user.user_name %></p>
-  <p><%= like_post.created_at.strftime('%Y/%m/%d') %></p>
+  <p>投稿No.<%= like_post.id %></p>
+  <%= link_to post_path(like_post.id) do %>
+   <%= attachment_image_tag like_post, :image %>
+  <% end %>
+  <p>
+    タイトル：
+    <%= link_to post_path(like_post.id) do %>
+     <%= like_post.title %>
+    <% end %>
+  </p>
+  <p><%#= attachment_image_tag like_post, :image %></p>
+  <p><%#= like_post.title %></p>
+  <p>コメント：<%= like_post.comment %></p>
+  <p>ユーザーネーム：<%= like_post.user.user_name %></p>
+  <p><%= like_post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 <% end %>
