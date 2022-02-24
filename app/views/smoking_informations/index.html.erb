@@ -1,7 +1,52 @@
-マイ喫煙情報一覧画面
-
-・累計本数、金額
-
-・禁煙日数
-
-・累計納税額
+<div class="container">
+ <div class="row">
+  <div class="col-md-10 col-md-offset-1">
+   <h4>マイ喫煙情報一覧画面</h4>
+   <%= form_with model: @user, local:true do |f| %>
+    <table class="table">
+     <h6>＜累計本数、金額＞</h6>
+     <tr>
+      <th>本数</th>
+      <td><%= f.text_field :total_number %>本</td>
+     </tr>
+     <tr>
+      <th>金額</th>
+      <td>
+        <%#= link_to smoking_information_path(@user.id) do %>
+         <%= f.text_field :total_amount %>円
+        <%# end %>
+      </td>
+     </tr>
+     <tr>
+      <th></th>
+      <td><%= f.submit '変更を保存' %></td>
+     </tr>
+    </table>
+    <table class="table">
+     <h6>＜禁煙日数＞</h6>
+     <tr>
+      <th></th>
+      <td><%= f.text_field :no_smoking_days %>日継続中・・・</td>
+     </tr>
+     <h6>えらい！！</h6>
+     <tr>
+      <th></th>
+      <td><%= f.submit '変更を保存' %></td>
+     </tr>
+    </table>
+    <table class="table">
+     <h6>＜累計納税額＞</h6>
+     <tr>
+      <th>今までのあなたの納税額は・・・</th>
+      <td><%= f.text_field :tax_payment_amount %>円です！</td>
+     </tr>
+     <h6>※たばこ1箱あたり６１．７％が税金です。</h6>
+     <tr>
+      <th></th>
+      <td><%= f.submit '変更を保存' %></td>
+     </tr>
+    </table>
+   <% end %>
+  </div>
+ </div>
+</div>

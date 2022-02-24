@@ -3,15 +3,17 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   #resources :users
   resources :users do
-    member do
-      get :likes
-    end
+    resources :likes, only: [:create, :destroy]
+    #member do
+      #get :likes
+    #end
   end
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :likes, only: [:index, :show, :create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-
+  
+  get 'users/like' => 'users#like'
   get 'users/my_page' => 'users#show'
   get 'users/unsubscribe' => 'users#unsubscribe'
   patch 'users/withdraw' => 'users#withdraw'
