@@ -22,7 +22,7 @@
        <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
         <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
+        <%= link_to 'マイページ', users_my_page_path(current_user.id) %>
         </li>
         <li>
         <%= link_to 'マイ喫煙情報', smoking_informations_path %>
