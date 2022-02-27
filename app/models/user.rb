@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :smoking_information
+  has_many :smoking_informations, dependent: :destroy
 end
