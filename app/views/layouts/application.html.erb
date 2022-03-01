@@ -9,9 +9,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+ <body>
   <header class="shadow-sm">
-   <h5 class="my-0 mr-md-auto font-weight-normal">LOGO</h5>
+   <h5 class="ml-3">Wander Smoker 🚬</h5>
    <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand p-3" href="/"><%#= image_tag('logo.png') %></a>
@@ -22,20 +22,26 @@
        <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
         <li>
-        <%= link_to 'マイページ', users_my_page_path(current_user.id) %>
+         <%= link_to "新着・投稿一覧", posts_path %>
         </li>
-        <li>
-        <%= link_to 'マイ喫煙情報', smoking_informations_path %>
+        <li class="ml-3">
+         <%= link_to "お気に入り一覧", likes_user_path(current_user) %>
         </li>
-        <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <li class="ml-3">
+         <%= link_to 'マイページ', users_my_page_path(current_user.id) %>
+        </li>
+        <li class="ml-3">
+         <%= link_to 'マイ喫煙情報', smoking_informations_path %>
+        </li>
+        <li class="ml-3">
+         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
        <% else %>
         <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+         <%= link_to "新規登録", new_user_registration_path %>
         </li>
-        <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <li class="ml-3">
+         <%= link_to "ログイン", new_user_session_path %>
         </li>
        <% end %>
        </ul>
@@ -43,15 +49,35 @@
     </div>
    </nav>
   </header>
- <%= yield %>
-  <footer>
-   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 
-     <nav class="my-2 my-md-0 mr-md-3">
-      <a class="p-2 text-dark" href="#"><%= link_to "新着・投稿一覧", posts_path %></a>
-      <a class="p-2 text-dark" href="#"><%#= link_to "お気に入り一覧", likes_user_path(current_user) %></a>
+  <main class="mb-auto">
+   <%= yield %>
+  </main>
 
-     </nav>
+  <footer class="bg-dark text-white pt-5 pb-4">
+   <div class="container">
+    <div class="row no-gutters">
+     <div class="col-md-4">
+      <p>喫煙者が助け合うSNS</p>
+      Wander Smoker 🚬
+     </div>
+     <div class="col-md-4">
+      <h6 class="text-white mt-2 mb-3">Link</h6>
+      <ul class="p-0 list-unstyled">
+       <li>
+        <a href="" title="About" class="text-white-50">会社概要</a>
+       </li>
+       <li>
+        <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-md-4">
+      <p>マナーを守って喫煙しましょう</p>
+      Wander Smoker 🚬
+     </div>
+    </div>
    </div>
   </footer>
+ </body>
 </html>
