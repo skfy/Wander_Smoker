@@ -4,6 +4,11 @@ class PostsController < ApplicationController
     @post.build_spot
   end
 
+  #def new
+   #@post = Review.new
+   #@post.spot.build
+  #end
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
