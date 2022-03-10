@@ -7,6 +7,16 @@
   <p>コメント：<%= @post.comment %></p>
   <p>ユーザーネーム：<%= @post.user.user_name %></p>
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+  
+  <div class="show">
+   <div class="show_address">
+    <%= @post.spot.address %>
+   </div>
+   <div class="show_maps>
+    {id: "show_map", style: "height: 320px; width: 400px;"}
+   </div>
+  </div>
+  
   <%= link_to "編集する", edit_post_path(@post) %>
 </div>
 
