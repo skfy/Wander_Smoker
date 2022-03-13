@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_223142) do
+ActiveRecord::Schema.define(version: 2022_03_13_011013) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_03_07_223142) do
     t.integer "review_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_id"
     t.index ["review_id_id"], name: "index_spots_on_review_id_id"
   end
 

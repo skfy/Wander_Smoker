@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
-    @post.build_spot
+    #@post.build_spot
   end
 
   #def new
@@ -18,6 +18,8 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
+    #@post = Review.new
+    @post.build_spot
     #@posts = Post.all
     @posts = Post.page(params[:page]).reverse_order
   end
