@@ -1,44 +1,93 @@
-let map //変数の定義
-let geocoder //変数の定義
-
-function initMap(){ //コールバック関数
-  geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
-  if(document.getElementById('map')){ //'map'というidを取得できたら実行
-    map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
-      center: {lat: 35.6594666, lng: 139.7005536}, //最初に表示する場所（今回は「渋谷スクランブル交差点」が初期値）
-      zoom: 15, //拡大率（1〜21まで設定可能）
+var getMap = (function() {
+  function codeAddress(address) {
+    // google.maps.Geocoder()コンストラクタのインスタンスを生成
+    var geocoder = new google.maps.Geocoder();
+ 
+    // 地図表示に関するオプション
+    var mapOptions = {
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+ 
+    // 地図を表示させるインスタンスを生成
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     
+    //マーカー変数用意
+    var marker;
+     
+    // geocoder.geocode()メソッドを実行 
+    geocoder.geocode( { 'address': address}, function(results, status) {
+       
+      // ジオコーディングが成功した場合
+      if (status == google.maps.GeocoderStatus.OK) {
+         
+        // 変換した緯度・経度情報を地図の中心に表示
+        map.setCenter(results[0].geometry.location);
+         
+        //☆表示している地図上の緯度経度
+        document.getElementById('lat').value=results[0].geometry.location.lat();
+        document.getElementById('lng').value=results[0].geometry.location.lng();
+         
+        // マーカー設定
+        marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+       
+      // ジオコーディングが成功しなかった場合
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+      }
+     
     });
-  }else{ //'map'というidが無かった場合
-    map = new google.maps.Map(document.getElementById('show_map'), { //'show_map'というidを取得してマップを表示
-      center: {lat: gon.lat, lng: gon.lng}, //controllerで定義した変数を緯度・経度の値とする（値はDBに入っている）
-      zoom: 15, //拡大率（1〜21まで設定可能）
+     
+    // マップをクリックで位置変更
+    map.addListener('click', function(e) {
+      getClickLatLng(e.latLng, map);
     });
-
-    marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
-      position:  {lat: gon.lat, lng: gon.lng}, //マーカーを落とす位置を決める（値はDBに入っている）
-      map: map //マーカーを落とすマップを指定
-    });
-  }
-}
-
-function codeAddress(){ //コールバック関数
-  let inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す
-    if (status == 'OK') {
-      let lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
-      let lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
-      let mark = {
-          lat: lat, //緯度
-          lng: lng  //経度
-      };
-      map.setCenter(results[0].geometry.location); //最も近い、判読可能な住所を取得したい場所の緯度・経度
-      let marker = new google.maps.Marker({
-          map: map, //マーカーを落とすマップを指定
-          position: results[0].geometry.location //マーカーを落とす位置を決める
+    function getClickLatLng(lat_lng, map) {
+       
+      //☆表示している地図上の緯度経度
+      document.getElementById('lat').value=lat_lng.lat();
+      document.getElementById('lng').value=lat_lng.lng();
+         
+      // マーカーを設置
+      marker.setMap(null);
+      marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map
       });
-    } else {
-      alert('該当する結果がありませんでした');
+     
+      // 座標の中心をずらす
+      map.panTo(lat_lng);
     }
-  });   
-}
+   
+  }
+   
+  //inputのvalueで検索して地図を表示
+  return {
+    getAddress: function() {
+      // ボタンに指定したid要素を取得
+      var button = document.getElementById("map_button");
+       
+      // ボタンが押された時の処理
+      button.onclick = function() {
+        // フォームに入力された住所情報を取得
+        var address = document.getElementById("address").value;
+        // 取得した住所を引数に指定してcodeAddress()関数を実行
+        codeAddress(address);
+      }
+       
+      //読み込まれたときに地図を表示
+      window.onload = function(){
+        // フォームに入力された住所情報を取得
+        var address = document.getElementById("address").value;
+        // 取得した住所を引数に指定してcodeAddress()関数を実行
+        codeAddress(address);
+      }
+    }
+   
+  };
+ 
+})();
+getMap.getAddress();
