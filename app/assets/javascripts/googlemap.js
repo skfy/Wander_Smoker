@@ -78,7 +78,8 @@ var getMap = (function() {
     getAddress: function() {
       // ボタンに指定したid要素を取得
       var button = document.getElementById("map_button");
-      
+      console.log("log output.");
+      console.log(button);
 
       // ボタンが押された時の処理
       button.onclick = function() {
