@@ -15,6 +15,15 @@ var getMap = (function() {
     //マーカー変数用意
     var marker;
 
+    // Place a draggable marker on the map
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable:true,
+        title:"Drag me!"
+    });
+
+
     // geocoder.geocode()メソッドを実行
     geocoder.geocode( { 'address': address}, function(results, status) {
 
@@ -69,6 +78,8 @@ var getMap = (function() {
     getAddress: function() {
       // ボタンに指定したid要素を取得
       var button = document.getElementById("map_button");
+      console.log("log output.");
+      console.log(button);
 
       // ボタンが押された時の処理
       button.onclick = function() {
