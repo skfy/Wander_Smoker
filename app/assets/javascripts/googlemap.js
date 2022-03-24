@@ -19,7 +19,7 @@ var getMap = (function() {
     var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        draggable:true,
+        draggable: true,
         title:"Drag me!"
     });
 

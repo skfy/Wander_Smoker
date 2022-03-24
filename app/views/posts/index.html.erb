@@ -14,16 +14,17 @@
 <h2>gmap</h2>
 <p>住所や駅名、目印などで検索できます。</p>
 <input id="address" type="textbox" value="市川市">
-<input type="button" value="検索" onclick="codeAddress()">
+<input type="button" value="検索" id="map_button" onclick="codeAddress()">
 <!-- 下の1行を追加 -->
 <div id="display">何かが表示される、、、、！</div>
 
 <div id='map'></div>
+<div id=‘map_button’></div>
 
 <style>
 #map {
   height: 600px;
-  width: 600px;
+  width: 1200px;
 }
 </style>
 
@@ -37,12 +38,12 @@ function initMap(){
   geocoder = new google.maps.Geocoder()
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
+    center: {lat: 35.661777, lng: 139.704051},
     zoom: 12,
   });
 
   marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
+    position:  {lat: 35.661777, lng: 139.704051},
     map: map
   });
 }
