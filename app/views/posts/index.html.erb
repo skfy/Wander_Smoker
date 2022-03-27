@@ -13,8 +13,10 @@
 
 <h2>gmap</h2>
 <p>住所や駅名、目印などで検索できます。</p>
-<input id="address" type="textbox" value="市川市">
-<input type="button" value="検索" id="map_button" onclick="codeAddress()">
+<form onsubmit="return false;">
+ <input id="address" type="textbox" value="市川市">
+ <input type="button" value="検索" id="map_button" onclick="codeAddress()">
+</form>
 <!-- 下の1行を追加 -->
 <div id="display">何かが表示される、、、、！</div>
 

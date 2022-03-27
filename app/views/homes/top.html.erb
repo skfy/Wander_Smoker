@@ -15,7 +15,7 @@
   <%= link_to "新規登録", new_user_registration_path %>
  </div>
  <div class="mt-3 mb-3">
-  <%= link_to "ゲスト" %>
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
  </div>
  <div class="mt-3 mb-3">
   <%= link_to "ログイン", new_user_session_path %>
