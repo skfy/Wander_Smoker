@@ -1,3 +1,5 @@
+$(document).on('turbolinks:load', function() {
+
 var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
@@ -102,3 +104,5 @@ var getMap = (function() {
 
 })();
 getMap.getAddress();
+
+});
