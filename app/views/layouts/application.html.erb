@@ -38,6 +38,12 @@
        <% else %>
          
        <% end %>
+       
+       <% if current_user %>
+        <%= current_user.id %>
+       <% else %>
+        ログインしていません
+       <% end %>
        </ul>
       </div>
     </div>
