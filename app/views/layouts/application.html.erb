@@ -36,14 +36,24 @@
          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
        <% else %>
-         
+         <li class="ml-3">
+          <%= link_to "新規登録", new_user_registration_path %>
+         </li>
+         <li class="ml-3">
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+         </li>
+         <li class="ml-3">
+          <%= link_to "ログイン", new_user_session_path %>
+         </li>
        <% end %>
-       
-       <% if current_user %>
-        <%= current_user.id %>
-       <% else %>
-        ログインしていません
-       <% end %>
+
+         <li class="ml-3">
+          <% if current_user %>
+           <%= current_user.id %>
+          <% else %>
+           ログインしていません
+          <% end %>
+         </li>
        </ul>
       </div>
     </div>
