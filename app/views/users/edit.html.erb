@@ -1,8 +1,9 @@
-編集画面
+
 <%= form_with model: @user, local: true do |f| %>
 <div class="container">
  <div class="row">
   <div class="col-md-10 col-md-offset-1">
+   <h4>編集画面</h4>
    <table class="table">
     <tr>
      <th><%= f.label :name, '名前' %></th>
@@ -30,8 +31,8 @@
     </tr>
     <tr>
      <th></th>
-     <td><%= f.submit '編集内容を保存' %></td>
-     <td><%= link_to "退会する", users_unsubscribe_path %></td>
+     <td><%= f.submit '編集内容を保存', class: "btn btn-success" %></td>
+     <td><%= link_to "退会する", users_unsubscribe_path, class: "btn btn-danger" %></td>
      <td><%#= link_to "退会する", users_withdraw_path, method: :patch, "data-confirm" => "退会しますか？" %></td>
     <tr>
    </table>
