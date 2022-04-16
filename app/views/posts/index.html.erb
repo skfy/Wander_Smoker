@@ -1,6 +1,8 @@
-投稿一覧画面
-
-<h1>投稿フォーム</h1>
+<div class="container">
+ <div class="row">
+  <div class="col">
+<h4>＜投稿一覧画面＞</h4>
+<h4>投稿フォーム</h4>
 <%= form_with model: @post, local:true do |f| %>
   <h4>画像</h4>
   <%= f.attachment_field :image %>
@@ -10,8 +12,11 @@
   <%= f.text_area :comment %>
   <%= f.submit '投稿' %>
 <% end %>
+  </div>
+ </div>
+</div>
 
-<h2>gmap</h2>
+<h2>map</h2>
 <p>住所や駅名、目印などで検索できます。</p>
 <form onsubmit="return false;">
  <input id="address" type="textbox" value="市川市">
@@ -74,6 +79,10 @@ function codeAddress(){
 経度 <input type="text" id="lng" value=""><br>
 地図上をクリックするとマーカーを移動できます。</p>
 
+<div class="container">
+ <div class="row">
+  <div class="col">
+
 <% @posts.each do |post| %>
 <div>
   <p>投稿No.<%= post.id %></p>
@@ -107,3 +116,7 @@ function codeAddress(){
 <% end %>
 
 <%= paginate @posts %>
+
+  </div>
+ </div>
+</div>
