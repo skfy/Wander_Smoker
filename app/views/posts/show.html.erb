@@ -41,7 +41,7 @@
  <div class="row">
   <div class="col">
    <%= form_for [@post, @comment] do |f| %>
-    <%= f.text_field :comment_text %>
+    <%= f.text_area :comment_text %>
     <br>
     <%= f.submit 'コメントする' %>
    <% end %>
