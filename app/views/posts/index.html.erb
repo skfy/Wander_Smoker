@@ -1,7 +1,7 @@
 <div class="container">
  <div class="row">
   <div class="col">
-   <h4>＜投稿一覧画面＞</h4>
+   <h4>＜検索・新規投稿・投稿一覧画面＞</h4>
    <h4>投稿フォーム</h4>
    <%= form_with model: @post, local:true do |f| %>
      <h4>画像</h4>
@@ -10,17 +10,20 @@
      <%= f.text_field :title %>
      <h4>コメント</h4>
      <%= f.text_area :comment %>
-     <%= f.submit '投稿' %>
+     <%= f.submit '投稿', class: "btn btn-secondary" %>
    <% end %>
   </div>
  </div>
 </div>
 
+<div class="container">
+ <div class="row">
+  <div class="col">
 <h2>map</h2>
 <p>住所や駅名、目印などで検索できます。</p>
 <form onsubmit="return false;">
  <input id="address" type="textbox" value="市川市">
- <input type="button" value="検索" id="map_button" onclick="codeAddress()">
+ <input type="button" value="検索" id="map_button" onclick="codeAddress()" class="btn btn-secondary">
 </form>
 <!-- 下の1行を追加 -->
 <div id="display">何かが表示される、、、、！</div>
@@ -30,7 +33,7 @@
 <style>
 #map {
   height: 600px;
-  width: 1200px;
+  width: 1100px;
 }
 </style>
 
@@ -79,17 +82,23 @@ function codeAddress(){
 経度 <input type="text" id="lng" value=""><br>
 地図上をクリックするとマーカーを移動できます。</p>
 
+  </div>
+ </div>
+</div>
+
+
 <div class="container">
  <div class="row">
   <% @posts.each do |post| %>
    <div class="col-sm-4">
     <div class="card">
+     <%= link_to post_path(post.id) do %>
+      <%= attachment_image_tag post, :image, class: "card-img-top" %>
+     <% end %>
      <div class="card-body text-center">
       <div>
         <p>投稿No.<%= post.id %></p>
-        <%= link_to post_path(post.id) do %>
-         <%= attachment_image_tag post, :image %>
-        <% end %>
+
         <p>
           タイトル：
           <%= link_to post_path(post.id) do %>
