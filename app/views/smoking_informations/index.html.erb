@@ -45,8 +45,8 @@
    <div class="card">
     <div class="card-body text-center">
      <h6>①累計本数、金額</h6>
-      <p>本数<%= @smoking_information.total_number %>本</p>
-      <p>金額<%= @smoking_information.total_amount %>円</p>
+      <p>本数<%= @smoking_informations.total_number %>本</p>
+      <p>金額<%= @smoking_informations.total_amount %>円</p>
      <h6>えらい！！</h6>
     </div>
    </div>
@@ -55,7 +55,7 @@
    <div class="card">
     <div class="card-body text-center">
      <h6>②禁煙日数</h6>
-      <p><%= @smoking_information.no_smoking_days %>日</p>
+      <p><%= @smoking_informations.no_smoking_days %>日</p>
     </div>
    </div>
   </div>
@@ -63,9 +63,23 @@
    <div class="card">
     <div class="card-body text-center">
      <h6>③累計納税額</h6>
-      <p><%= @smoking_information.tax_payment_amount %>円です！</p>
+      <p><%= @smoking_informations.tax_payment_amount %>円です！</p>
     </div>
    </div>
   </div>
  </div>
 </div>
+
+<% @smoking_informations.each do |smoking_information| %>
+ <tr>
+   <td><%= smoking_information.user_id %></td>
+  <%= form_with model: smoking_information, local:true do |f| %>
+   <td><%= f.select :total_number, [*1..10000], include_blank: "本数" %></td>
+   <td><%= f.submit "更新" %></td>
+  <% end %>
+   <td><%= smoking_information.total_amount %></td>
+   <td><%= smoking_information.no_smoking_days %></td>
+   <td><%= smoking_information.tax_payment_amount %></td>
+   <td><%= link_to "削除する", csmoking_informations_path, method: :delete %></td>
+ </tr>
+<% end %>
