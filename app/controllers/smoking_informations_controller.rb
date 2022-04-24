@@ -3,14 +3,14 @@ class SmokingInformationsController < ApplicationController
     @smoking_information = SmokingInformation.new
   end
   def create
-    @smoking_information = SmokingInformation.new(smoking_information_params)
+    @smoking_information = SmokingInformation.new
     @smoking_information.user_id = current_user.id
     @smoking_information.save
-    redirect_to smoking_informations_path
+    redirect_to smoking_information_path(current_user.id)
   end
   def index
-    @smoking_information = SmokingInformation.new(smoking_information_params)
-    @smoking_informations = SmokingInformation.find(params[:user_id])
+    @smoking_information = SmokingInformation.new
+    @smoking_informations = SmokingInformation.all
     #page(params[:page]).reverse_order
     #@smoking_information = SmokingInformation.find(params[:id])
     #@user = current_user
@@ -24,15 +24,21 @@ class SmokingInformationsController < ApplicationController
     #@smoking_information = SmokingInformation.find(params[:id])
   #end
   def show
-
+    @user = current_user.id
+    @smoking_information = @user.smoking_information
+  end
+  def edit
+    @smoking_information = SmokingInformation.find(params[:id])
   end
   def update
     @user = current_user
-    @user.update(post_params)
+    @user.update(smoking_information_params)
     redirect_to smoking_informations_path
   end
   def destroy
-
+    @smoking_information = SmokingInformation.find(params[:id])
+    @smoking_information.destroy
+    redirect_to smoking_informations_path
   end
 
   private
