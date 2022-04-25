@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   #get 'users/like' => 'users#like'
   #get 'smoking_informations' => 'smoking_informations#index'
-  resources :smoking_informations, only: [:new, :create, :show, :index, :edit, :update, :destroy]
+  resources :smoking_informations, only: [:index, :create, :new, :update, :destroy]
+  get 'smoking_informations/:id' => 'smoking_informations#show'
+  get 'smoking_informations/:id/edit' => 'smoking_informations#edit'
   #patch 'smoking_informations/index' => 'smoking_informations#index'
   #put 'withdraw/:id' => 'users#withdraw'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
