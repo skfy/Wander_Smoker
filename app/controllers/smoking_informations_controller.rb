@@ -24,8 +24,7 @@ class SmokingInformationsController < ApplicationController
     #@smoking_information = SmokingInformation.find(params[:id])
   #end
   def show
-    @user = current_user.id
-    @smoking_information = @user.smoking_information
+    @smoking_information = SmokingInformation.find(params[:id])
   end
   def edit
     @smoking_information = SmokingInformation.find(params[:id])
@@ -44,7 +43,7 @@ class SmokingInformationsController < ApplicationController
   private
 
   def smoking_information_params
-    params.require(:smoking_information).permit(:user_id, :total_number, :total_amount, :no_smoking_days, :tax_payment_amount)
+    params.require(:smoking_information).permit(:id, :total_number, :total_amount, :no_smoking_days, :tax_payment_amount)
   end
 
 end
