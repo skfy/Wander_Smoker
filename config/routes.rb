@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       get :likes
     end
+    #resources :smoking_informations
   end
 
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do

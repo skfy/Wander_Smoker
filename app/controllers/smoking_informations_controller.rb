@@ -26,7 +26,7 @@ class SmokingInformationsController < ApplicationController
   def show
     @smoking_information = SmokingInformation.find_by(user_id: "current_user")
     #@smoking_information = SmokingInformation.find_by(id: 1...)
-    #@smoking_information = SmokingInformation.find(params[:id])
+    #@smoking_information = SmokingInformation.find(params[:user_id])
   end
   def edit
     @smoking_information = SmokingInformation.find(params[:id])
