@@ -3,7 +3,7 @@ class SmokingInformationsController < ApplicationController
     @smoking_information = SmokingInformation.new
   end
   def create
-    @smoking_information = SmokingInformation.new
+    @smoking_information = SmokingInformation.new(smoking_information_params)
     @smoking_information.user_id = current_user.id
     @smoking_information.save
     redirect_to smoking_information_path(current_user.id)
@@ -24,9 +24,10 @@ class SmokingInformationsController < ApplicationController
     #@smoking_information = SmokingInformation.find(params[:id])
   #end
   def show
-    @smoking_information = SmokingInformation.find_by(user_id: "current_user")
+    #@smoking_information = SmokingInformation.find_by(user_id: "23")
     #@smoking_information = SmokingInformation.find_by(id: 1...)
     #@smoking_information = SmokingInformation.find(params[:user_id])
+    @smoking_information = SmokingInformation.find(params[:id])
   end
   def edit
     @smoking_information = SmokingInformation.find(params[:id])

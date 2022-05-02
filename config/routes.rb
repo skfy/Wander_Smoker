@@ -20,14 +20,16 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :likes, only: [:index, :show, :create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    #resources :comments, only: [:create, :destroy]
   end
 
   #get 'users/like' => 'users#like'
   #get 'smoking_informations' => 'smoking_informations#index'
   resources :smoking_informations, only: [:index, :create, :new, :update, :destroy]
-  get 'smoking_informations/:user_id' => 'smoking_informations#show'
-  get 'smoking_informations/:user_id/edit' => 'smoking_informations#edit'
+  #post 'smoking_informations/:user_id' => 'smoking_informations#create'
+  #get 'smoking_informations/:user_id' => 'smoking_informations#index'
+  get 'smoking_informations/:id' => 'smoking_informations#show'
+  get 'smoking_informations/:id/edit' => 'smoking_informations#edit'
   #patch 'smoking_informations/index' => 'smoking_informations#index'
   #put 'withdraw/:id' => 'users#withdraw'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
