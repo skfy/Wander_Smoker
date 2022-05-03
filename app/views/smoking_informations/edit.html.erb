@@ -1,8 +1,9 @@
+<%= form_with model: @smoking_information, url:smoking_information_path, local: true do |f| %>
 <div class="container">
  <div class="row">
   <div class="col-md-10 col-md-offset-1">
-   <h4>＜マイ喫煙情報登録＞</h4>
-   <%= form_with model: @smoking_information, url:smoking_informations_path, local:true do |f| %>
+   <h4>＜マイ喫煙情報編集＞</h4>
+   <%#= form_with model: @smoking_information, url:smoking_informations_path, local:true do |f| %>
     <table class="table">
      <h6>①累計本数、金額</h6>
      <tr>
@@ -22,21 +23,22 @@
      <h6>②禁煙日数</h6>
      <tr>
       <th></th>
-      <td><%= f.text_field :no_smoking_days %>日継続中・・・</td>
+      <td><%= f.text_field :no_smoking_days %>日</td>
      </tr>
     </table>
     <table class="table">
      <h6>③累計納税額</h6>
      <tr>
       <th>今までのあなたの納税額は・・・</th>
-      <td><%= f.text_field :tax_payment_amount %>円です！</td>
+      <td><%= f.text_field :tax_payment_amount %>円</td>
      </tr>
      <h6>※たばこ1箱あたり６１．７％が税金です。</h6>
+     <tr>
+      <th></th>
+      <td><%= f.submit '編集内容を保存', class: "btn btn-success" %></td>
+     </tr>
     </table>
-    <%= f.submit 'マイ喫煙情報を保存' %>
-   <% end %>
-   <%#= link_to "既存マイ喫煙情報詳細", smoking_information_path, class: "btn btn-success" %>
-   
   </div>
  </div>
 </div>
+<% end %>

@@ -33,9 +33,9 @@ class SmokingInformationsController < ApplicationController
     @smoking_information = SmokingInformation.find(params[:id])
   end
   def update
-    @user = current_user
-    @user.update(smoking_information_params)
-    redirect_to smoking_informations_path
+    @smoking_information = SmokingInformation.find(params[:id])
+    @smoking_information.update(smoking_information_params)
+    redirect_to smoking_information_path(current_user.id)
   end
   def destroy
     @smoking_information = SmokingInformation.find(params[:id])
