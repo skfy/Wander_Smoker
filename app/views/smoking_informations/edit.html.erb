@@ -3,7 +3,6 @@
  <div class="row">
   <div class="col-md-10 col-md-offset-1">
    <h4>＜マイ喫煙情報編集＞</h4>
-   <%#= form_with model: @smoking_information, url:smoking_informations_path, local:true do |f| %>
     <table class="table">
      <h6>①累計本数、金額</h6>
      <tr>
@@ -12,11 +11,7 @@
      </tr>
      <tr>
       <th>累計金額</th>
-      <td>
-        <%#= link_to smoking_information_path(@user.id) do %>
-         <%= f.text_field :total_amount %>円
-        <%# end %>
-      </td>
+      <td><%= f.text_field :total_amount %>円</td>
      </tr>
     </table>
     <table class="table">
