@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
  <body>
+
   <header class="shadow-sm">
    <h5 class="ml-3">Wander Smoker 🚬</h5>
    <nav class="navbar navbar-expand-lg navbar-light">
@@ -67,7 +68,7 @@
    <%= yield %>
   </main>
 
-  <footer class="bg-dark text-white pt-5 pb-4">
+  <div id="footer" class="fixed-bottom bg-dark text-white" style="height:80px; background-color: #f5af7d;">
    <div class="container">
     <div class="row no-gutters">
      <div class="col-md-4">
@@ -91,6 +92,6 @@
      </div>
     </div>
    </div>
-  </footer>
+  </div>
  </body>
 </html>
