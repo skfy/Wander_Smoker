@@ -3,17 +3,20 @@
 require 'rails_helper'
 
 describe '投稿のテスト' do
-  let!(:post) { create(:post, title:'hoge',comment:'body') }
-  describe 'トップ画面(top_path)のテスト' do
+  
+  describe 'トップ画面(root_path)のテスト' do
     before do
-      visit top_path
+      visit root_path
     end
     context '表示の確認' do
-      it 'トップ画面(top_path)に「ここはTopページです」が表示されているか' do
+      it 'トップ画面(root_path)に「ここはTopページです」が表示されているか' do
         expect(page).to have_content 'ここはTopページです'
       end
-      it 'top_pathが"/top"であるか' do
-        expect(current_path).to eq('/top')
+      it "top画面に新着・投稿一覧へのリンクが表示されているか" do
+        expect(page).to have_link "", href: posts_path
+      end
+      it 'root_pathが"/"であるか' do
+        expect(current_path).to eq('/')
       end
     end
   end
@@ -24,7 +27,7 @@ describe '投稿のテスト' do
     end
     context '表示の確認' do
       it 'new_post_pathが"/posts/new"であるか' do
-        expect(current_path).to eq('/lists/new')
+        expect(current_path).to eq('/posts/new')
       end
       it '投稿ボタンが表示されているか' do
         expect(page).to have_button '投稿'
@@ -57,11 +60,8 @@ describe '投稿のテスト' do
       visit post_path(post)
     end
     context '表示の確認' do
-      it '削除リンクが存在しているか' do
-        expect(page).to have_link '削除'
-      end
       it '編集リンクが存在しているか' do
-        expect(page).to have_link '編集'
+        expect(page).to have_link '編集する'
       end
     end
     context 'リンクの遷移先の確認' do
@@ -69,11 +69,6 @@ describe '投稿のテスト' do
         edit_link = find_all('a')[3]
         edit_link.click
         expect(current_path).to eq('/posts/' + post.id.to_s + '/edit')
-      end
-    end
-    context 'post削除のテスト' do
-      it 'postの削除' do
-        expect{ post.destroy }.to change{ Post.count }.by(-1)
       end
     end
   end
@@ -87,8 +82,16 @@ describe '投稿のテスト' do
         expect(page).to have_field 'post[title]', with: post.title
         expect(page).to have_field 'post[comment]', with: post.comment
       end
-      it '保存ボタンが表示される' do
-        expect(page).to have_button '保存'
+      it '再投稿ボタンが表示される' do
+        expect(page).to have_button '再投稿'
+      end
+      it '削除リンクが存在しているか' do
+        expect(page).to have_link '削除'
+      end
+    end
+    context 'post削除のテスト' do
+      it 'postの削除' do
+        expect{ post.destroy }.to change{ Post.count }.by(-1)
       end
     end
     context '更新処理に関するテスト' do
