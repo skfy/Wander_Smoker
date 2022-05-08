@@ -10,6 +10,21 @@
      <p>ユーザーネーム：<%= @post.user.user_name %></p>
      <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
      <p>コメント件数：<%= @post.comments.count %></p>
+
+     <% if @post.liked_by?(current_user) %>
+      <p>
+        <%= link_to post_likes_path(@post), method: :delete do %>
+          ♥<%= @post.likes.count %> いいね
+        <% end %>
+      </p>
+     <% else %>
+      <p>
+        <%= link_to post_likes_path(@post), method: :post do %>
+          ♡<%= @post.likes.count %> いいね
+        <% end %>
+      </p>
+     <% end %>
+
      <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
     </div>
   </div>
@@ -17,53 +32,47 @@
 </div>
 
 <div class="container">
-＜コメント一覧＞
  <div class="row">
-    <% @comments.each do |comment| %>
-     <div class="col-sm-3">
-      <div class="card">
-       <p><%#= image_tag('sample-author1.jpg') %></p>
-       <p><%= comment.user.user_name %></p>
-       <p><%= comment.comment_text %></p>
-       <p><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-       <p>
-        <% if comment.user == current_user %>
-         <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger" %>
-        <% end %>
-       </p>
-      </div>
-     </div>
-    <% end %>
+  <div class="col">
+   <%= form_with(model:[@post, @comment], method: :post) do |f| %>
+   <%#= form_for [@post, @comment], url:post_path do |f| %>
+    <%= f.text_area :comment_text %>
+    <%#= f.hidden_filed :post_id, value: @post.id %>
+    <br>
+    <%= f.submit 'コメントする' %>
+   <% end %>
+  </div>
  </div>
 </div>
 
 <div class="container">
+ ＜コメント一覧＞
  <div class="row">
   <div class="col">
-   <%= form_for [@post, @comment] do |f| %>
-    <%= f.text_area :comment_text %>
-    <br>
-    <%= f.submit 'コメントする' %>
-   <% end %>
-
-   <%#= form_with(model:[@post, @comment], local: true) do |f| %>
-    <%#= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-    <%#= f.submit "送信する" %>
-   <%# end %>
-
-   <% if @post.liked_by?(current_user) %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :delete do %>
-        ♥<%= @post.likes.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :post do %>
-        ♡<%= @post.likes.count %> いいね
-      <% end %>
-    </p>
-   <% end %>
+   <table class="table table-striped ">
+    <thead>
+     <tr>
+      <th>コメント投稿者</th>
+      <th>コメント内容</th>
+      <th>コメント日時</th>
+      <th></th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @comments.each do |comment| %>
+      <tr>
+       <td><%= comment.user.user_name %></td>
+       <td><%= comment.comment_text %></td>
+       <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+       <td>
+        <% if comment.user == current_user %>
+         <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+       </td>
+      </tr>
+     <% end %>
+    </tbody>
+   </table>
   </div>
  </div>
 </div>
