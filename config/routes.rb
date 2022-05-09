@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :likes, only: [:index, :show, :create, :destroy]
     resources :comments, only: [:create, :destroy]
+    collection do
+     get 'search'
+    end
   end
 
   #get 'users/like' => 'users#like'

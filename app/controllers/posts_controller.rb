@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  #before_action :search
+
   def new
     @post = Post.new
     #@post.build_spot
@@ -23,12 +25,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def search
+    # params[:q]のqには検索フォームに入力した値が入る
+    @q = Post.ransack(params[:q])
+  end
+
   def index
     @post = Post.new
     #@post = Review.new
     @post.build_spot
     #@posts = Post.all
-    @posts = Post.page(params[:page]).reverse_order
+    #@posts = Post.page(params[:page]).reverse_order
+    # distinct: trueは重複したデータを除外
+    @posts = @q.result(distinct: true)
   end
 
   def show
