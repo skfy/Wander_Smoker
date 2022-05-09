@@ -8,6 +8,10 @@ class Post < ApplicationRecord
  has_one :spot, dependent: :destroy
   accepts_nested_attributes_for :spot
 
+ validates :title, presence: true
+ validates :comment, presence: true
+ validates :image, presence: true
+
  def liked_by?(user)
    likes.where(user_id: user.id).exists?
  end
