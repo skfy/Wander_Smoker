@@ -53,7 +53,9 @@ function initMap(){
 
   marker = new google.maps.Marker({
     position:  {lat: 35.661777, lng: 139.704051},
-    map: map
+    map: map,
+    draggable: true,
+    title:"Drag me!"
   });
 }
 
@@ -93,15 +95,15 @@ function codeAddress(){
     <!--検索フォーム-->
     <%= search_form_for @q do |f| %>
       <!--name_contは、あいまい検索を指定-->
-      <%#= f.text_field :title_cont %>
-      <%= f.label :title_or_comment, "Keyword" %>
-  　　<%= f.search_field :title_or_comment_cont %>
+      <%= f.text_field :title_cont %>
+      <%#= f.label :title_or_comment, "Keyword" %>
+  　　<%#= f.search_field :title_or_comment_cont %>
       <%= f.submit "検索" %>
     <% end %>
-    <!--検索結果-->
    </div>
   </div>
   <div class="row">
+    <!--検索結果-->
     <% if @posts.present? %>
       <!--検索がヒットした場合-->
       <% @posts.each do |post| %>
