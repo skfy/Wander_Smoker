@@ -35,9 +35,10 @@ class PostsController < ApplicationController
     #@post = Review.new
     @post.build_spot
     #@posts = Post.all
-    #@posts = Post.page(params[:page]).reverse_order
     # distinct: trueは重複したデータを除外
+    @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
