@@ -84,12 +84,15 @@ var getMap = (function() {
       console.log(button);
 
       // ボタンが押された時の処理
-      button.onclick = function() {
+      window.onload = function () {
+        document.getElementById("map-button").onclick = function () {
+      //button.onclick = function() {
         // フォームに入力された住所情報を取得
         var address = document.getElementById("address").value;
         // 取得した住所を引数に指定してcodeAddress()関数を実行
         codeAddress(address);
-      }
+        }
+　　　}
 
       //読み込まれたときに地図を表示
       window.onload = function(){
