@@ -47,13 +47,13 @@
           <%= link_to "トップページ", root_path %>
          </li>
          <li class="ml-3">
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "新規登録", new_user_registration_path, "data-confirm" => "【年齢確認】20歳以上ですか？" %>
          </li>
          <li class="ml-3">
           <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
          </li>
          <li class="ml-3">
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", new_user_session_path, "data-confirm" => "【年齢確認】20歳以上ですか？" %>
          </li>
        <% end %>
 
