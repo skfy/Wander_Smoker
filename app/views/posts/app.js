@@ -1,5 +1,3 @@
-$(document).on('turbolinks:load', function() {
-
 var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
@@ -12,7 +10,7 @@ var getMap = (function() {
     };
 
     // 地図を表示させるインスタンスを生成
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("display"), mapOptions);
 
     //マーカー変数用意
     var marker;
@@ -107,5 +105,3 @@ var getMap = (function() {
 
 })();
 getMap.getAddress();
-
-});

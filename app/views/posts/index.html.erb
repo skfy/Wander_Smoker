@@ -10,12 +10,6 @@
      <%= f.text_field :title %>
      <h6>コメント</h6>
      <%= f.text_area :comment %>
-
-     <h6>spot</h6>
-     <%= f.fields_for :spot do |s| %>
-      <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot_title' %>
-      <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: 'spot_text' %>
-
      <%= f.submit '投稿', class: "btn btn-secondary" %>
    <% end %>
   </div>
@@ -31,8 +25,7 @@
  <input id="address" type="text" value="渋谷駅">
  <input type="button" value="検索" id="map_button" onclick="codeAddress()" class="btn btn-secondary">
 </form>
-<!-- 下の1行を追加 -->
-<div id="display">何かが表示される、、、、！</div>
+
 <!-- 地図を表示させる要素 -->
 <div id='map'></div>
 
@@ -57,12 +50,6 @@ function initMap(){
     zoom: 12,
   });
 
-  marker = new google.maps.Marker({
-    position:  {lat: 35.661777, lng: 139.704051},
-    map: map,
-    draggable: true,
-    title:"Drag me!"
-  });
 }
 
 function codeAddress(){
@@ -70,9 +57,18 @@ function codeAddress(){
 
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
+
+      // 変換した緯度・経度情報を地図の中心に表示
       map.setCenter(results[0].geometry.location);
+
+      //☆表示している地図上の緯度経度
+      document.getElementById('lat').value=results[0].geometry.location.lat();
+      document.getElementById('lng').value=results[0].geometry.location.lng();
+
       var marker = new google.maps.Marker({
           map: map,
+          draggable: true,
+    　　　　title:"Drag me!",
           position: results[0].geometry.location
       });
       // 下の1行を追加
@@ -84,7 +80,7 @@ function codeAddress(){
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyezL_ScHfYIA3dFodDD0-9X1uBWGX9do&callback=initMap" async defer></script>
-<script src="app.js"></script>
+
 
 
 <p>マーカーのある位置の<br>
