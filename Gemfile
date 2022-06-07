@@ -76,3 +76,8 @@ gem "geocoder"
 gem "gon"
 gem "dotenv-rails"
 gem 'ransack'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
